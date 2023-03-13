@@ -19,7 +19,7 @@ const Auth:React.FC = () => {
             <h1 className="text-3xl text-white font-bold">Sign In</h1>
             <form className="mt-5">
               <div className="flex flex-col gap-4">
-                <Input type="email" placeholder="Email" onChange={(e: String) => console.log(e)}/>
+                <Input type="email" placeholder="Email" onChange={(e: String) => setEmail(e)}/>
               </div>
             </form>
           </div>
