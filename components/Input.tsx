@@ -4,41 +4,41 @@ interface InputItemProps {
   placeholder?: string;
   sx?:string;
   onChange: Function;
-
+  value?: string;
 }
-
-const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange}) => {
-
-  console.log(type, placeholder, sx)
+ 
+const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange, value}) => {
 
   return (
     <div className="relative">
       <input
         onChange={(e) => onChange(e.target.value)}
         id={placeholder}
+        value={value}
         type={type}
         placeholder=" "
         className={`
-        block
-        bg-gray-800
-        text-white 
-        px-6 pt-6 pb-1
-        w-full
-        text-md
-        rounded-md 
-        focus:outline-none 
-        focus:ring-2
-        peer
-        focus:bg-gray-700
-        ${sx}`}
+          block
+          cursor-text
+          bg-gray-800
+          text-white 
+          px-6 pt-6 pb-1
+          w-full
+          text-md
+          rounded-md 
+          focus:outline-none 
+          focus:ring-2
+          peer
+          focus:bg-gray-700
+          ${sx}`}
         />
         <label 
         htmlFor={placeholder}
         className="absolute
-        top-0
-        left-0
-        px-6
-        py-3.5
+          top-0
+          left-0
+          px-6
+          py-3.5
          text-gray-400
          text-md
          transition-all

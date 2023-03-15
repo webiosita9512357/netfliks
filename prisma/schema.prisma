@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String?   @unique
+  password  String?
+  firstName String
+  lastName  String
+  role      String?
+  image     String?
+  favorites String[] @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sessions  Session[]
+  accounts  Account[]
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  expiresAt DateTime
+  sessionToken String @unique
+  accessToken String @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  provider  String
+  providerAccountId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @db.ObjectId
+  refreshToken String? @db.String
+  accessToken String? @db.String
+  expiresAt Int?
+  tokenType String?
+  scope String?
+  idToken String? @db.String
+  sessionState String?
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token     String   @unique
+  expires   DateTime
+
+  @@unique([identifier, token])
+}
+
+model Movie {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  year      Int
+  rated     Int
+  runtime   String
+  genres     String[]
+  actors    String[]
+  thumbnailUrl    String
+  videoUrl    String
+  ratings   String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
