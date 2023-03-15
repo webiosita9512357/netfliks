@@ -1,4 +1,5 @@
 import Input from "@/components/Input"
+import axios from "axios"
 import Image from "next/image"
 import { useCallback, useState } from "react"
 
@@ -9,9 +10,31 @@ const Auth:React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [isLogin, setIsLogIn] = useState<boolean>(true)
 
+  // toggle between sign in and sign up form
   const toggleLogin = useCallback(() => {
     setIsLogIn(!isLogin)
   },[isLogin])
+
+  // APIS call to sign in/sign up
+  // const signUpCall = useCallback(async () => {
+  //    try {
+  //     await axios.post('/api/auth/signup', {
+  //       email,
+  //       password,
+  //       firstName,
+  //       lastName
+  //     })
+  //    } catch (error: any) {
+  //     console.error('Error in the signUpCall in auth: ' + error);
+  //     // throw new Error(error);
+  //    }
+  // }, []);
+
+
+  const onSSubmitTest = useCallback(async (e: any) => {
+    e.preventDefault()
+    console.log(e.target.value)
+  },[])
 
   return (
     <div className="relative h-full w-full bg-[url('/images/netflixBgr.png')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -23,17 +46,18 @@ const Auth:React.FC = () => {
          <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-7 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h1 className="text-3xl text-white font-bold">{isLogin ? "Sign In" : "Sign Up"}</h1>
-            <form className="mt-5">
+            <form onSubmit={onSSubmitTest} className="mt-5">
+              {/* form custom inputs */}
               <div className="flex flex-col gap-4">
                 <Input type="email" value={email} placeholder="Email" onChange={(e: string) => setEmail(e)}/>
                 {!isLogin && <Input type="Text" value={password} placeholder="First Name" onChange={(e: string) => setPassword(e)}/>}
                 {!isLogin && <Input type="Text" value={password} placeholder="Last Name" onChange={(e: string) => setPassword(e)}/>}
                 <Input type="password" value={password} placeholder="Password" onChange={(e: string) => setPassword(e)}/>
               </div>
-            </form>
-            <button className="w-full bg-red-700 text-white px-5 py-3 rounded-md text-sm font-bold mt-5 transition hover:bg-red-600">
+            <button type="submit" className="w-full bg-red-700 text-white px-5 py-3 rounded-md text-sm font-bold mt-5 transition hover:bg-red-600">
               {isLogin? "Log In": "Sign Up"}
             </button>
+            </form>
             <div className="flex items-center justify-between mt-3">
               <div className="flex items-center">
                 <input type="checkbox" className="h-4 w-4 border rounded-md cursor-pointer" />

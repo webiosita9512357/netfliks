@@ -8,7 +8,6 @@ interface InputItemProps {
 }
  
 const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange, value}) => {
-
   return (
     <div className="relative">
       <input
@@ -33,22 +32,22 @@ const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange, value
           ${sx}`}
         />
         <label 
-        htmlFor={placeholder}
-        className="absolute
-          top-0
-          left-0
-          px-6
-          py-3.5
-         text-gray-400
-         text-md
-         transition-all
-         duration-200
-         peer-focus:top-0
-         peer-focus:text-sm peer-focus:px-2
-         peer-focus:py-1
-         peer-focus:text-gray-500
-         peer-placeholder-shown:scale-100"
-        >
+          htmlFor={placeholder}
+          className={`
+            absolute
+            transition-all
+            duration-200
+            peer-focus:top-0
+            peer-focus:text-sm peer-focus:px-2
+            peer-focus:py-1
+            peer-focus:text-gray-500
+            peer-placeholder-shown:scale-100
+            ${!value ? 
+              'top-0 left-0 px-6 py-3.5 text-gray-400 text-md' 
+              : 
+              'top-0 text-gray-500 scale-100 px-2 py-1 text-sm'}
+          `}
+          >
           {placeholder}
         </label>
       </div>
