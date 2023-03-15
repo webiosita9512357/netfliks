@@ -1,21 +1,24 @@
+import { useState } from "react";
 
 interface InputItemProps {
-  type?: string;
-  placeholder?: string;
+  placeholder: string;
   sx?:string;
-  onChange: Function;
-  value?: string;
+  register: Function; 
+  getValues: Function;
+  error?: any;
+  isPassword?: boolean;
 }
  
-const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange, value}) => {
+const Input: React.FC<InputItemProps> = ({isPassword, getValues, error, register, placeholder, sx}) => {
+  const [value, setValue] = useState<boolean>(getValues()[placeholder])
   return (
     <div className="relative">
       <input
-        onChange={(e) => onChange(e.target.value)}
+        {...register(placeholder)}
         id={placeholder}
-        value={value}
-        type={type}
+        type={isPassword? 'password' : 'text'}
         placeholder=" "
+        onBlur={() => getValues()[placeholder]? setValue(true) : setValue(false)}
         className={`
           block
           cursor-text
@@ -42,13 +45,15 @@ const Input: React.FC<InputItemProps> = ({type, placeholder, sx, onChange, value
             peer-focus:py-1
             peer-focus:text-gray-500
             peer-placeholder-shown:scale-100
+            capitalize  
             ${!value ? 
               'top-0 left-0 px-6 py-3.5 text-gray-400 text-md' 
               : 
               'top-0 text-gray-500 scale-100 px-2 py-1 text-sm'}
-          `}
+              ${error && value && 'text-red-600'}
+              `}
           >
-          {placeholder}
+          {error && value? error :placeholder.replace(/([a-z])([A-Z])/g, '$1 $2')}
         </label>
       </div>
   )
