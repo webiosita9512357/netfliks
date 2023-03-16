@@ -25,9 +25,9 @@ const Profiles = () => {
   const {data} = useAuthenticatedUser();
   const router = useRouter();
   return (
-    <div>
+    <div className="absolute top-0 w-full">
       <NavBar isDashboard data={data} />
-      <div className="flex flex-col mt-14 lg:mt-44">
+      <div className="flex flex-col mt-44 lg:mt-60">
         <h1 className="text-3xl md:text-6xl text-white text-center">
           {"Who's watching?"}
         </h1>

@@ -64,15 +64,11 @@ model VerificationToken {
 model Movie {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
-  year      Int
-  rated     Int
-  runtime   String
-  genres     String[]
-  actors    String[]
-  thumbnailUrl    String
+  year      Int?
+  duration   String?
+  genre     String?
+  thumbnailUrl    String?
+  description String?
   videoUrl    String
-  ratings   String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 

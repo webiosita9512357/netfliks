@@ -72,10 +72,10 @@ const Auth:React.FC = () => {
 
   return (
     <div className="relative h-full w-full bg-[url('/images/netflixBgr.png')] bg-no-repeat bg-center bg-fixed bg-cover">
+      <NavBar />
       <div className=" w-full h-full bg-gradient-to-r from-[#06202A] to-transparent">
-        <NavBar />
          <div className="flex justify-center">
-          <div className="bg-black bg-opacity-70 px-16 py-7 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
+          <div className="bg-black bg-opacity-70 px-16 py-7 self-center mt-36 md:w-3/5 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h1 className="text-3xl text-white font-bold">{isLogin ? "Sign In" : "Sign Up"}</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
               {/* form custom inputs */}
