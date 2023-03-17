@@ -7,13 +7,15 @@ interface InputItemProps {
   getValues: Function;
   error?: any;
   isPassword?: boolean;
+  disabled?: boolean;
 }
  
-const Input: React.FC<InputItemProps> = ({isPassword, getValues, error, register, placeholder, sx}) => {
+const Input: React.FC<InputItemProps> = ({disabled, isPassword, getValues, error, register, placeholder, sx}) => {
   const [value, setValue] = useState<boolean>(getValues()[placeholder])
   return (
     <div className="relative">
       <input
+        disabled={disabled}
         {...register(placeholder)}
         id={placeholder}
         type={isPassword? 'password' : 'text'}
@@ -32,6 +34,8 @@ const Input: React.FC<InputItemProps> = ({isPassword, getValues, error, register
           focus:ring-2
           peer
           focus:bg-gray-700
+          disabled:opacity-40
+          disabled:cursor-not-allowed
           ${sx}`}
         />
         <label 

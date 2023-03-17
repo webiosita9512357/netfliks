@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { AiOutlineDown, AiOutlineDownCircle, AiOutlinePlayCircle, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineInfoCircle, AiOutlinePlayCircle } from "react-icons/ai";
 import FavButton from "./favButton";
 
 interface MovieCardProps {
@@ -14,10 +14,12 @@ interface MovieCardProps {
     id: string;
     genre: string;
     duration: string;
+    year?: number;
   }
+  setModalData: Function;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({data}) => {
+const MovieCard: React.FC<MovieCardProps> = ({data, setModalData}) => {
   const router = useRouter();
   // const { openModal } = useInfoModalStore();
 
@@ -25,7 +27,8 @@ const MovieCard: React.FC<MovieCardProps> = ({data}) => {
   
   return (
    <div className="group bg-gray-800 col-span relative">
-      <img src={data.thumbnailUrl} alt="Movie" draggable={false} className="
+      <img src={data.thumbnailUrl} alt="Movie" draggable={false} 
+      className="
         cursor-pointer
         object-cover
         transition
@@ -36,7 +39,8 @@ const MovieCard: React.FC<MovieCardProps> = ({data}) => {
         sm:group-hover:opacity-0
         delay-200
         w-full
-        h-[12vw]
+        h-44
+        md:h-[12vw]
       " />
       <div className="
         opacity-0
@@ -45,14 +49,13 @@ const MovieCard: React.FC<MovieCardProps> = ({data}) => {
         transition
         duration-200
         z-10
-        invisible
-        sm:visible
         delay-200
         w-full
         scale-0
-        group-hover:scale-110
+        group-hover:scale-105
+        md:group-hover:scale-110
         group-hover:-translate-y-[6vw]
-        group-hover:translate-x-[2vw]
+        md:group-hover:translate-x-[2vw]
         group-hover:opacity-100
       ">
         <img onClick={redirectToWatch} src={data.thumbnailUrl} alt="Movie" draggable={false} className="
@@ -63,7 +66,8 @@ const MovieCard: React.FC<MovieCardProps> = ({data}) => {
           shadow-xl
           rounded-t-md
           w-full
-          h-[12vw]
+          h-44
+          md:h-[12vw]
         " />
         <div className="
           z-10
@@ -82,20 +86,20 @@ const MovieCard: React.FC<MovieCardProps> = ({data}) => {
             </div>
             <FavButton movieId={data?.id} />
             <div 
-            // onClick={() => openModal(data?.id)} 
-            className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300">
-              <AiOutlineDown className="text-white text-2xl group-hover/item:text-neutral-300 w-4 lg:w-6" />
+            className="cursor-pointer ml-auto group/item flex justify-center items-center">
+              <AiOutlineInfoCircle onClick={() => setModalData(data)} className="text-white text-2xl lg:text-3xl group-hover/item:text-neutral-300" />
             </div>
           </div>
-          <p className="text-green-400 font-semibold mt-4">
+          { data && "year" in data && data.year === 2023 && (<p className="text-green-400 font-semibold mt-4">
             New <span className="text-white">2023</span>
-          </p>
-          <p className="text-white text-lg lg:text-md font-bold mt-2">{data.title}</p>
-          <div className="flex flex-row mt-4 gap-2 items-center"> 
-            <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
-          </div>
-          <div className="flex flex-row items-center gap-2 mt-4 text-[8px] text-white lg:text-sm">
-            <p>{data.genre}</p>
+          </p>)
+          }
+          <p className="text-white text-lg lg:text-md font-bold mt-0 md:mt-2">{data.title}</p>
+          
+          <div className="flex flex-row items-center gap-2 mt-2 text-[8px] lg:text-sm">
+             {data?.genre?.split(' ').map((genre:string) => (
+                <p className='bg-white text-black rounded-3xl px-4 font-semibold' key={genre}>{genre}</p>
+              ))}
           </div>
         </div>
       </div>

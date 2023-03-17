@@ -12,10 +12,11 @@ interface MovieListProps {
     duration: string;
   }[];
   label?: string;
+  setModalData: Function;
 }
 
 
-const MovieList: React.FC<MovieListProps> = ({data, label}) => {
+const MovieList: React.FC<MovieListProps> = ({data, label, setModalData }) => {
   return (
     data?.length?
     <div className="px-4 md:px-12 mt-4 space-y-8 w-full">
@@ -25,7 +26,7 @@ const MovieList: React.FC<MovieListProps> = ({data, label}) => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 w-[90vw] h-auto">
           {data?.map((item) => (
-            <MovieCard key={item.id} data={item} />
+            <MovieCard setModalData={setModalData} key={item.id} data={item} />
           ))}
         </div>
       </div>

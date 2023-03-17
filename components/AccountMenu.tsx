@@ -15,7 +15,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({visible, data}) => {
   return (
     visible
     ?
-    <div className="bg-gray-700 w-56 absolute top-24 right-0 py-5 flex-col border-2 border-gray-800 flex">
+    <div className="bg-gray-700 w-56 absolute top-24 right-5 py-5 flex-col flex rounded-md">
       <div className="flex flex-col gap-3">
         <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
           <div className="relative overflow-hidden rounded-md w-8 h-8 lg:h-10 lg:w-10 ">

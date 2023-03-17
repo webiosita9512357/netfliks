@@ -27,8 +27,8 @@ const FavButton: React.FC<FavButtonProps> = ({movieId}) => {
   }, [isFavorite, movieId, mutate, mutateUser, user]);
 
   return (
-    <div onClick={toggleFav} className='group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full cursor-pointer flex justify-center items-center transition hover:border-neutral-300'>
-      <MdFavorite className={`text-2xl ${isFavorite? 'text-red-700': 'text-white'}`} />
+    <div onClick={toggleFav} className='group/item w-10 h-10 lg:w-10 lg:h-10 cursor-pointer flex justify-center items-center'>
+      <MdFavorite className={`text-2xl lg:text-4xl ${isFavorite? 'text-red-700': 'text-white'}`} />
     </div>
   )
 }

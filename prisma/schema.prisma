@@ -70,5 +70,6 @@ model Movie {
   thumbnailUrl    String?
   description String?
   videoUrl    String
+  type     String?
 }
 
