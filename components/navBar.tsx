@@ -72,9 +72,9 @@ const NavBar: React.FC<navBarProps> = ({isDashboard, notFixed}) => {
               <FaChevronDown className={`text-gray-300 transition text-sm ${showMenu? 'rotate-180': 'rotate-0'}`} />
               <MobileMenu setVisible={setShowMenu} visible={showMenu}/>
             </div>
-            <div className="text-gray-200 hover:text-gray-400 cursor-pointer text-2xl">
+            {/* <div className="text-gray-200 hover:text-gray-400 cursor-pointer text-2xl">
               <AiOutlineSearch />
-            </div>
+            </div> */}
             <div className=" flex flex-row items-center gap-2 cursor-pointer" onClick={() => setShowAccMenu(!showAccMenu)}>
               <div className="relative overflow-hidden rounded-md w-8 h-8 lg:h-10 lg:w-10 ">
                 <Image fill src="/images/face3.png" alt="User Logo" className="rounded-md" />
