@@ -4,9 +4,12 @@
 ![Screenshot 2023-03-19 185320](https://user-images.githubusercontent.com/122698176/226196855-bb28df38-f26d-4ba6-87d7-de7fb003cfd1.png)
 
 
-Still work in progres...
-It's very standart app using NextJS. You can signup/login. Utilizing NextAut you will stay authenticated. User can be created, updated and deleted. User can add movies to favourites. All movies are found on the internet and with singular purpose to showcase the functionality. You can browse and watch the movie with some information about them.
-UI and all components and animations made with tailwind. 
+Still work in progres... 
+Main aim of this app was to learn Prisma, Cloud Atlas and TailwindCSS. Next and Typescript come second in this project.
+
+It's a very standart app using NextJS. You can signup/login. Utilizing NextAut you will stay authenticated. User can be created, updated and deleted. User can add movies to favourites. All movies are found on the internet and with singular purpose to showcase the functionality. You can browse and watch the movie with some information about them.
+UI and all components and animations made with tailwind.
+
 Using free plan of Atlas so server might not responde every time.
 
 ## Main Tech

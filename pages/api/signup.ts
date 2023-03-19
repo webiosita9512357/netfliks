@@ -19,7 +19,7 @@ import bcrypt from 'bcrypt'
 
       // If user already exists, return 409
       if (userRegistered) {
-        return res.status(409).end();
+        return res.status(409).json({ message: 'User already exists' });
       }
 
       // Hash password

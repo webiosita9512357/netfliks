@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { getSession, signIn } from "next-auth/react"
 import NavBar from "@/components/navBar"
 import { NextPageContext } from "next"
+import { useRouter } from "next/router"
+import Alert from "@/components/Alert"
 
 export const  getServerSideProps = async (context: NextPageContext) => {
     const session = await getSession(context);
@@ -25,7 +27,10 @@ export const  getServerSideProps = async (context: NextPageContext) => {
 
 const Auth:React.FC = () => {
 
-  const [isLogin, setIsLogIn] = useState<boolean>(true)
+  const router = useRouter();
+  const [isLogin, setIsLogIn] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   
   const schema = z.object(
     {
@@ -49,25 +54,33 @@ const Auth:React.FC = () => {
 
 
   
- // APIS call to sign in/sign up
+  // APIS call to sign in/sign up
   const onSubmit = useCallback(async (formValues: any) => {
-    try {
-      !isLogin && await axios.post('/api/signup', formValues).catch(function (error) {
-      throw new Error(error);
-  });
 
-      await signIn('credentials', {...formValues, callbackUrl: '/profiles'}).then((res) => {
+    const signer = async () => {
+      await signIn('credentials', {...formValues, redirect: false, callbackUrl: '/profiles'}).then((res) => {
         if (!res || res.error) {
+          console.error(res && res.error && res.error);
           throw new Error(res && "error" in res? res.error : 'login failed');
+        } else {
+          router.push('/profiles');
         }
       });
+    }
 
+    try {
+      !isLogin ? await axios.post('/api/signup', formValues).catch(function (error) {
+        throw new Error(error.response.data.message);
+    }).then(async () => {
+      await signer();
+    }) : await signer();
 
      } catch (error: any) {
-      console.error('Error in the auth submit function: ' + error);
-      // throw new Error(error);
+      setErrorMessage(`Incorrect Credentials_${error.message}`);
+      setError(true);
      }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isLogin])
 
   return (
@@ -97,7 +110,12 @@ const Auth:React.FC = () => {
             </form>
            
             <div className="flex items-center justify-between mt-3">
-              <a className="text-gray-500 text-sm ml-2 hover:underline cursor-pointer">Need help?</a>
+              <a 
+                onClick={() => {
+                  setErrorMessage(`Yeah?_Well too bad!`);
+                  setError(true);
+                }}
+               className="text-gray-500 text-sm ml-2 hover:underline cursor-pointer">Need help?</a>
             </div>
             <div className=" flex items-baseline mt-5 text-gray-500 ">
               <p className="text-sm">{isLogin ? "Already have an account?" : "New to Netflix?"}</p>
@@ -112,7 +130,7 @@ const Auth:React.FC = () => {
           </div>
          </div>
       </div>
-
+      <Alert title={errorMessage.split("_")[0]} description={errorMessage.split("_")[1]} type="error" show={error} setShow={setError} />
     </div>
   )
 }

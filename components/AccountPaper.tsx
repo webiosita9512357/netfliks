@@ -53,8 +53,8 @@ const AccountPaper: React.FC<Props> = ({data}) => {
   const onDelete = useCallback(async (e:any ) => {
     try {
       e.preventDefault();
-      signOut();
       await axios.delete('/api/user', {data: {email: data?.email}});
+      await signOut();
       setTimeout(() => {
         router.push('/auth');
       }, 2000);
