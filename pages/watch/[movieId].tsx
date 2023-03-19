@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import FullSiteLoader from '@/components/FullSiteLoader';
 import NavBar from '@/components/navBar';
 import useMovie from '@/hooks/useMovie';
 import Image from 'next/image';
@@ -12,9 +13,7 @@ const Watch = () => {
   return (
     <>
     <NavBar notFixed isDashboard/>
-    <div className={`bg-gray-700 bg-opacity-70 fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center ${isLoading? "visible": "hidden"}`}>
-        <div className="animate-spin rounded-full h-48 w-48 border-t-2 border-b-2 border-red-600"/>
-    </div>
+    <FullSiteLoader isLoading={isLoading}/>
     <div className='px-2 md:px-5 lg:px-10 text-white '>
       <video controls className='h-full w-full ' poster={data?.thumbnailUrl} src={data?.videoUrl} />
       {data &&

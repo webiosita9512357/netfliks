@@ -97,10 +97,6 @@ const Auth:React.FC = () => {
             </form>
            
             <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center">
-                <input type="checkbox" className="h-4 w-4 border rounded-md cursor-pointer" />
-                <p className="text-gray-500 text-sm ml-2">Remember me</p>
-              </div>
               <a className="text-gray-500 text-sm ml-2 hover:underline cursor-pointer">Need help?</a>
             </div>
             <div className=" flex items-baseline mt-5 text-gray-500 ">

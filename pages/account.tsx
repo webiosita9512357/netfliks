@@ -1,4 +1,5 @@
 import AccountPaper from '@/components/AccountPaper';
+import FullSiteLoader from '@/components/FullSiteLoader';
 import Input from '@/components/Input';
 import NavBar from '@/components/navBar';
 import useAuthenticatedUser from '@/hooks/useAuthenticatedUser';
@@ -31,9 +32,7 @@ const Account = () => {
 
   return (
     <>
-      <div className={`bg-gray-800 bg-opacity-85 fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center ${isLoading? "visible": "hidden"}`}>
-        <div className="animate-spin rounded-full h-48 w-48 border-t-2 border-b-2 border-red-600"/>
-      </div>
+      <FullSiteLoader isLoading={isLoading}/>
       <NavBar isDashboard/>
       <div className="grid h-screen place-items-center text-white">
         {data && <AccountPaper data={data} />}

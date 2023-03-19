@@ -96,7 +96,7 @@ const MovieCard: React.FC<MovieCardProps> = ({data, setModalData}) => {
           }
           <p className="text-white text-lg lg:text-md font-bold mt-0 md:mt-2">{data.title}</p>
           
-          <div className="flex flex-row items-center gap-2 mt-2 text-[8px] lg:text-sm">
+          <div className="flex flex-row flex-wrap items-center gap-2 mt-2 text-[8px] lg:text-sm">
              {data?.genre?.split(' ').map((genre:string) => (
                 <p className='bg-white text-black rounded-3xl px-4 font-semibold' key={genre}>{genre}</p>
               ))}

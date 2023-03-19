@@ -24,7 +24,6 @@ const InfiModal:React.FC<InfoModalProps> = ({data, setIsOpen}) => {
   
   return (
      <div onClick={() => setIsOpen(null)} className={`bg-gray-700 bg-opacity-70 fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center`}>
-        {/* <div className="animate-spin rounded-full h-48 w-48 border-t-2 border-b-2 border-yellow-600"/> */}
         <div className='w-4/5 lg:w-2/3 bg-gray-800 px-8 rounded-lg text-white'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 py-10 '>
           <div className='flex flex-col justify-between'>
