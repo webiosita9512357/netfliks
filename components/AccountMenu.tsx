@@ -26,10 +26,10 @@ const AccountMenu: React.FC<AccountMenuProps> = ({visible, data}) => {
           </p>
         </div>
           <button onClick={() => router.push("/account")} className="px-3 text-sm bg-gray-500 text-gray-300 py-2 mx-3 rounded-md hover:bg-gray-600 transition duration-300">
-            Manage Profile
+            Opatric profiľ
           </button>
           <button onClick={() => signOut()} className="px-3 text-sm bg-red-800 text-gray-300 py-2 mx-3 rounded-md hover:bg-red-900 transition duration-300">
-            Sign Out
+            Isc z tadzi
           </button>
       </div>
     </div>

@@ -67,7 +67,7 @@ const AccountPaper: React.FC<Props> = ({data}) => {
 
   return (
     <div className="bg-black py-4 px-10 rounded-lg items-center w-5/6 md:w-3/4 lg:w-3/5 m-auto content-center">
-          <h1 className='text-xl md:text-3xl font-bold mb-10'>Account Settings</h1>
+          <h1 className='text-xl md:text-3xl font-bold mb-10'>Muj Profiľ</h1>
               <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <Input disabled error={errors['email']?.message} register={register} getValues={() => getValues()} placeholder="email"/>
@@ -77,10 +77,10 @@ const AccountPaper: React.FC<Props> = ({data}) => {
                 </div>
                   <div className='flex'>
                     <button type="submit" className="w-fit mt-10 bg-blue-700 text-white px-2 py-3 rounded-md text-sm font-bold transition hover:bg-blue-600">
-                      Update Account
+                      Vytunic profiľ
                     </button>
                     <button onClick={onDelete} className="w-fit mt-10 ml-5 bg-red-700 text-white px-2 py-3 rounded-md text-sm font-bold transition hover:bg-red-600">
-                      Delete Account
+                      Vyrucic profiľ
                     </button>
                 </div>
               </form>

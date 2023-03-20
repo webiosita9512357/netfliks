@@ -34,14 +34,14 @@ const Auth:React.FC = () => {
   
   const schema = z.object(
     {
-    email: z.string().email({ message: "Invalid email address" }),
-    password: z.string().min(6, { message: " Password must be 6 or more characters" }),
+    email: z.string().email({ message: "To co za mail?" }),
+    password: z.string().min(6, { message: " Aspoň 6 tam ruc" }),
   });
   const schemaSignup = z.object({
-    email: z.string().email({ message: "Invalid email address" }),
-    password: z.string().min(6, { message: " Password must be 6 or more characters" }),
-    firstName: z.string().min(2, { message: "Fist Name must be 2 or more characters" }),
-    lastName: z.string().min(2, { message: "Last Name must be 2 or more characters" }),
+    email: z.string().email({ message: "To co za mail?" }),
+    password: z.string().min(6, { message: " Aspoň 6 tam ruc" }),
+    firstName: z.string().min(2, { message: "Aspoň 2 tam ruc" }),
+    lastName: z.string().min(2, { message: "Aspoň 2 tam ruc" }),
   })
     const {register, handleSubmit, getValues, formState} = useForm({resolver: zodResolver(isLogin? schema: schemaSignup)});
     const {errors} = formState;
@@ -61,7 +61,7 @@ const Auth:React.FC = () => {
       await signIn('credentials', {...formValues, redirect: false, callbackUrl: '/profiles'}).then((res) => {
         if (!res || res.error) {
           console.error(res && res.error && res.error);
-          throw new Error(res && "error" in res? res.error : 'login failed');
+          throw new Error(res && "error" in res? res.error : 'coškaj nedobre s prihlašenim');
         } else {
           router.push('/profiles');
         }

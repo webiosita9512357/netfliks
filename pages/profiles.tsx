@@ -34,7 +34,7 @@ const Profiles = () => {
     <div className="absolute top-0 w-full">
       <div className="flex flex-col mt-44 lg:mt-60">
         <h1 className="text-3xl md:text-6xl text-white text-center">
-          {"Who's watching?"}
+          {"Kto kuka?"}
         </h1>
         <div className="flex items-start justify-center gap-11 mt-10 mb-10 flex-wrap">
           <div onClick={() => router.push("/")} className={cardStyle}>
@@ -50,7 +50,7 @@ const Profiles = () => {
           </div>
         </div>
       </div>
-      <Alert title="Absolutely Not!!!" description="No sharing! Not even home!!!" type="error" show={show} setShow={setShow}  />
+      <Alert title="Ta dze?!" description="Žadne živanstvo! Ani doma!" type="error" show={show} setShow={setShow}  />
     </div>
   )
 }

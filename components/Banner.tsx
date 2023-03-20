@@ -23,10 +23,10 @@ const Banner: React.FC<BannerProps> = ({setModalData}) => {
           <p className="text-white text-sm lg:text-lg mt-4 hidden md:block">{data?.description}</p>
           <div className="flex flex-row gap-2 mt-2 md:mt-5">
             <button onClick={redirectToWatch} className="bg-red-600 md:w-fit bg-opacity-90 text-white px-10 py-3 rounded-md text-sm font-bold transition hover:bg-red-700 hidden md:block">
-              Watch
+              Kuknuc
             </button>
             <button onClick={() => setModalData(data)} className="bg-gray-200 text- md:w-fit bg-opacity-70 text-white px-10 py-1 md:py-3 rounded-md text-sm font-bold transition hover:bg-gray-400">
-              More Info
+              Ukaž vecej
             </button>
           </div>
         </div>

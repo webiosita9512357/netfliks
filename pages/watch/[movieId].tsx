@@ -25,15 +25,15 @@ const Watch = () => {
             </div>
             <div>
             <div className='flex flex-row gap-2 mt-5 text-lg '>
-              <p className='font-bold'>year: </p>
+              <p className='font-bold'>rok: </p>
               <p>{data?.year}</p>
             </div>
             <div className='flex flex-row gap-2 mt-1 text-lg '>
-              <p className='font-bold'>duration: </p>
+              <p className='font-bold'>dlužka: </p>
               <p>{data?.duration}</p>
             </div>
             <div className='flex flex-row gap-2 mt-1 text-lg'>
-              <p className='font-bold'>genres: </p>
+              <p className='font-bold'>odrody: </p>
               {data?.genre?.split(' ').map((genre:string) => (
                 <p className='bg-white text-black rounded-3xl px-4 font-semibold' key={genre}>{genre}</p>
               ))}
