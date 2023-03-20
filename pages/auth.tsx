@@ -89,7 +89,7 @@ const Auth:React.FC = () => {
       <div className=" w-full h-full bg-gradient-to-r from-[#06202A] to-transparent">
          <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-7 self-center mt-36 md:w-3/5 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h1 className="text-3xl text-white font-bold">{isLogin ? "Sign In" : "Sign Up"}</h1>
+            <h1 className="text-3xl text-white font-bold">{isLogin ? "Prihlašic" : "Zaregistrovac"}</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
               {/* form custom inputs */}
               <div className="flex flex-col gap-4">
@@ -104,7 +104,7 @@ const Auth:React.FC = () => {
                     <Image width={40} height={40} src="/images/google.png" alt="Google Logo"/>
                   </button>} */}
                   <button type="submit" className="w-full bg-red-700 text-white px-5 py-3 rounded-md text-sm font-bold mt-5 transition hover:bg-red-600">
-                    {isLogin? "Log In": "Sign Up"}
+                    {isLogin? "Prihlašic": "Zaregistrovac"}
                   </button>
               </div>
             </form>
@@ -115,12 +115,12 @@ const Auth:React.FC = () => {
                   setErrorMessage(`Yeah?_Well too bad!`);
                   setError(true);
                 }}
-               className="text-gray-500 text-sm ml-2 hover:underline cursor-pointer">Need help?</a>
+               className="text-gray-500 text-sm ml-2 hover:underline cursor-pointer">Treba pomosc?</a>
             </div>
             <div className=" flex items-baseline mt-5 text-gray-500 ">
-              <p className="text-sm">{isLogin ? "Already have an account?" : "New to Netflix?"}</p>
+              <p className="text-sm">{isLogin ? "Už štangasta?" : "Nikda tu nebul?"}</p>
                 <a onClick={toggleLogin} className="text-lg ml-2 text-white hover:underline cursor-pointer whitespace-nowrap">
-                  {!isLogin ? "Log in." : "Sign up Now."}
+                  {!isLogin ? "Prihlašic" : "Zaregistrovac teraz takoj"}
                 </a>
             </div> 
             <p className="text-gray-500 text-sm mt-9">
