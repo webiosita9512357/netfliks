@@ -9,6 +9,7 @@ import useFavorites from "@/hooks/useFavorites";
 import useMovies from "@/hooks/useMovies";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
+import Head from "next/head";
 import { useMemo, useState } from "react";
 
   export const  getServerSideProps = async (context: NextPageContext) => {
@@ -37,15 +38,22 @@ export default function Home() {
   const isLoading = useMemo(() => load1 || load2 || load3 || load4, [load1, load2, load3, load4]);
 
   return (
-    <div> 
-        <FullSiteLoader isLoading={isLoading}/>
-        <NavBar isDashboard />
-        <Banner setModalData={setModalData} />
-        <div className="flex flex-wrap gap-10 pb-52">
-          <MovieList setModalData={setModalData} data={movies} label="Trending" />
-          <MovieList setModalData={setModalData} data={favorites} label="Favorites" />
-        </div>
-        {modalData && <InfiModal setIsOpen={setModalData} data={modalData} />}
-    </div>
+    <>
+    <Head>
+        <title>Netfliks</title>
+
+    </Head>
+    
+      <div> 
+          <FullSiteLoader isLoading={isLoading}/>
+          <NavBar isDashboard />
+          <Banner setModalData={setModalData} />
+          <div className="flex flex-wrap gap-10 pb-52">
+            <MovieList setModalData={setModalData} data={movies} label="Trending" />
+            <MovieList setModalData={setModalData} data={favorites} label="Favorites" />
+          </div>
+          {modalData && <InfiModal setIsOpen={setModalData} data={modalData} />}
+      </div>
+    </>
   )
 }

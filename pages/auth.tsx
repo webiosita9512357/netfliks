@@ -15,7 +15,7 @@ export const  getServerSideProps = async (context: NextPageContext) => {
     if (session) {
       return {
         redirect: {
-          destination: "/",
+          destination: "/profiles",
           permanent: false,
         },
       };

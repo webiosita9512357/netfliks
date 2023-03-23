@@ -1,17 +1,18 @@
+import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
+import { VisibleProps } from "@/interfaces/interfaces";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-
-interface AccountMenuProps {
-  visible?: boolean;
-  data?: {
-    email: string;
-  }
+interface Props {
+  visible: boolean;
 }
 
-const AccountMenu: React.FC<AccountMenuProps> = ({visible, data}) => {
+
+const AccountMenu: React.FC<Props> = ({visible}) => {
+  const {data} = useAuthenticatedUser();
   const router = useRouter();
+  
   return (
     visible
     ?

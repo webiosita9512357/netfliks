@@ -5,38 +5,18 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import MobileMenu from "./MobileMenu";
 import { useEffect, useState } from "react";
 import AccountMenu from "./AccountMenu";
-import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
+import { navBarProps } from "../interfaces/interfaces";
 import { useRouter } from "next/router";
-
-
-interface navBarProps {
-  isDashboard?: boolean;
-  notFixed?: boolean;
-}
 
 const Offset = 66;
 
 const NavBar: React.FC<navBarProps> = ({isDashboard, notFixed}) => {
   const router = useRouter();
-  const {data} = useAuthenticatedUser();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showAccMenu, setShowAccMenu] = useState<boolean>(false);
-  const [navBgr, setNavBgr] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > Offset) {
-        setNavBgr(true);
-      } else {
-        setNavBgr(false);
-      }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [])
 
   return (
-     <nav className={`flex items-center justify-between px-5 md:px-14 py-1 flex-row bg-gradient-to-b from-[#06202A] ${navBgr? "to-transparent":"bg-opacity-50"} transition duration-500 ${!notFixed && "fixed"} z-10 w-full`}>
+     <nav className={`flex items-center justify-between px-5 md:px-14 py-1 flex-row bg-gradient-to-b from-[#06202A] bg-opacity-50 transition duration-500 ${!notFixed && "fixed"} z-10 w-full`}>
       <div className="block lg:flex flex-row lg:gap-10">
         <div className="relative w-32 h-24 md:w-40 cursor-pointer" onClick={() => router.push("/")}>
           <Image fill src="/images/logo.png" alt="NetfliKS Logo"/>
@@ -80,7 +60,7 @@ const NavBar: React.FC<navBarProps> = ({isDashboard, notFixed}) => {
                 <Image fill src="/images/face3.png" alt="User Logo" className="rounded-md" />
               </div>
               <FaChevronDown className={`text-white transition text-sm ${showAccMenu? 'rotate-180': 'rotate-0'}`} />
-              <AccountMenu visible={showAccMenu} data={data}/>
+              <AccountMenu visible={showAccMenu}/>
             </div>
           </div>
           }

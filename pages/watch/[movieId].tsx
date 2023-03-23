@@ -2,20 +2,33 @@
 import FullSiteLoader from '@/components/FullSiteLoader';
 import NavBar from '@/components/navBar';
 import useMovie from '@/hooks/useMovie';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Watch = () => {
   const {movieId} = useRouter().query;
   const {data, isLoading} = useMovie(movieId);
+  const [currentEpisode, setCurrentEpisode] = useState(0);
 
   return (
     <>
     <NavBar notFixed isDashboard/>
     <FullSiteLoader isLoading={isLoading}/>
     <div className='px-2 md:px-5 lg:px-10 text-white '>
-      <video controls className='h-full w-full ' poster={data?.thumbnailUrl} src={data?.videoUrl} />
+      <video controls className='h-full w-full ' poster={data?.thumbnailUrl} src={data?.type === "series"? data?.episodes[currentEpisode]: data?.videoUrl} />
+       {data?.type === 'series' && (
+        <>
+        <p className="mt-2 font-bold text-lg">Episodes:</p>
+        <div className='flex flex-row gap-5 mt-2 text-xl font-bold flex-wrap '>
+          {data.episodes.map((_: string, idx: number) => (
+            <div onClick={() => setCurrentEpisode(idx)} key={idx} className={`cursor-pointer bg-white text-black rounded-3xl px-10 py-1 font-semibold ${currentEpisode === idx && "bg-red-500 text-white"  }`}>
+              {idx + 1}
+            </div>
+          )
+          )}
+        </div>
+          </>
+        )}
       {data &&
         <div className='grid grid-cols-1 md:grid-cols-2 gap-5 py-10 '>
           <div className='flex flex-col justify-between'>

@@ -1,18 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { MovieProps } from '@/interfaces/interfaces';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react'
 
-interface InfoModalProps {
+interface InfoModalProps extends MovieProps {
   setIsOpen: Function;
-  data: {
-    id: string;
-    title: string;
-    description: string;
-    year: number;
-    genre: string;
-    duration: string;
-    thumbnailUrl: string;
-  } | null;
 }
 
 
@@ -47,7 +39,7 @@ const InfiModal:React.FC<InfoModalProps> = ({data, setIsOpen}) => {
               ))}
             </div>
             <button onClick={() => redirectToWatch()} className="bg-red-600 md:w-fit bg-opacity-90 text-white mt-5 px-10 py-3 rounded-md text-sm font-bold transition hover:bg-red-700">
-              Watch
+              Kuknuc
             </button>
             </div>
           </div>

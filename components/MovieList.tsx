@@ -1,19 +1,7 @@
+import { MovieListProps } from "@/interfaces/interfaces";
 import MovieCard from "./MovieCard";
 
 
-interface MovieListProps {
-  data?: {
-    title: string;
-    description: string;
-    thumbnailUrl: string;
-    videoUrl: string;
-    id: string;
-    genre: string;
-    duration: string;
-  }[];
-  label?: string;
-  setModalData: Function;
-}
 
 
 const MovieList: React.FC<MovieListProps> = ({data, label, setModalData }) => {

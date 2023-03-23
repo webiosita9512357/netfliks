@@ -1,16 +1,9 @@
+import { InputProps } from "@/interfaces/interfaces";
 import { useState } from "react";
 
-interface InputItemProps {
-  placeholder: string;
-  sx?:string;
-  register: Function; 
-  getValues: Function;
-  error?: any;
-  isPassword?: boolean;
-  disabled?: boolean;
-}
+
  
-const Input: React.FC<InputItemProps> = ({disabled, isPassword, getValues, error, register, placeholder, sx}) => {
+const Input: React.FC<InputProps> = ({disabled, isPassword, getValues, error, register, placeholder, sx}) => {
   const [value, setValue] = useState<boolean>(getValues()[placeholder])
   return (
     <div className="relative">

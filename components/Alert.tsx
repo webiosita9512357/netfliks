@@ -1,12 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { AlertProps } from '@/interfaces/interfaces';
+import React, { useCallback, useEffect } from 'react'
 
-interface AlertProps {
-  title: string;
-  description: string;
-  type: string;
-  show: boolean;
-  setShow: (show: boolean) => void;
-}
+
 
 
 const Alert: React.FC<AlertProps> = ({title, description, type, show, setShow}) => {

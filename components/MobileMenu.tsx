@@ -1,12 +1,9 @@
+import { VisibleProps } from "@/interfaces/interfaces";
 import { useRouter } from "next/router";
 import { AiFillCloseCircle, AiOutlineCloseCircle } from "react-icons/ai";
 
-interface MobileMenuProps {
-  visible?: boolean;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const MobileMenu: React.FC<MobileMenuProps> = ({visible, setVisible}) => {
+const MobileMenu: React.FC<VisibleProps> = ({visible, setVisible}) => {
   const router = useRouter();
   return (
     visible ? 

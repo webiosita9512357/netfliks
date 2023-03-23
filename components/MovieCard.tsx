@@ -1,21 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { MovieProps } from "@/interfaces/interfaces";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { AiOutlineDown, AiOutlineInfoCircle, AiOutlinePlayCircle } from "react-icons/ai";
 import FavButton from "./favButton";
 
-interface MovieCardProps {
-  data: {
-    title: string;
-    description: string;
-    thumbnailUrl: string;
-    videoUrl: string;
-    id: string;
-    genre: string;
-    duration: string;
-    year?: number;
-  }
+interface MovieCardProps extends MovieProps {
   setModalData: Function;
 }
 
