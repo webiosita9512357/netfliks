@@ -21,7 +21,7 @@ const Watch = () => {
         <p className="mt-2 font-bold text-lg">Episodes:</p>
         <div className='flex flex-row gap-5 mt-2 text-xl font-bold flex-wrap '>
           {data.episodes.map((_: string, idx: number) => (
-            <div onClick={() => setCurrentEpisode(idx)} key={idx} className={`cursor-pointer bg-white text-black rounded-3xl px-10 py-1 font-semibold ${currentEpisode === idx && "bg-red-500 text-white"  }`}>
+            <div onClick={() => setCurrentEpisode(idx)} key={idx} className={`cursor-pointer bg-white text-black rounded-3xl px-10 py-1 font-semibold ${currentEpisode === idx && "bg-blue-500 text-white"  }`}>
               {idx + 1}
             </div>
           )

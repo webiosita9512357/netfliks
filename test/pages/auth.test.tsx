@@ -6,7 +6,7 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn()
 }));
 
-   describe('Login/Register Layer', () => {
+   describe('Login/Register layer render', () => {
       it('should render the movie dashboard', () => {
         render(<Auth />);
         expect(screen.getByText('email')).toBeInTheDocument();

@@ -5,7 +5,7 @@ export interface navBarProps {
 }
 
 export interface MovieListProps {
-  data?: MovieProps[];
+  data?: MovieProps["data"][];
   label?: string;
   setModalData: Function;
 }
@@ -19,7 +19,7 @@ export interface MovieProps {
     id: string;
     genre: string;
     duration: string;
-    year?: number;
+    year: number;
   }
 }
 
