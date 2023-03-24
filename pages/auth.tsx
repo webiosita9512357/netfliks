@@ -29,6 +29,7 @@ const Auth:React.FC = () => {
 
   const router = useRouter();
   const [isLogin, setIsLogIn] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   
@@ -56,11 +57,12 @@ const Auth:React.FC = () => {
   
   // APIS call to sign in/sign up
   const onSubmit = useCallback(async (formValues: any) => {
-
+    setLoading(true);
     const signer = async () => {
       await signIn('credentials', {...formValues, redirect: false, callbackUrl: '/profiles'}).then((res) => {
         if (!res || res.error) {
           console.error(res && res.error && res.error);
+          setLoading(false);
           throw new Error(res && "error" in res? res.error : 'coškaj nedobre s prihlašenim');
         } else {
           router.push('/profiles');
@@ -70,13 +72,15 @@ const Auth:React.FC = () => {
 
     try {
       !isLogin ? await axios.post('/api/signup', formValues).catch(function (error) {
+        setLoading(false);
         throw new Error(error.response.data.message);
     }).then(async () => {
       await signer();
     }) : await signer();
 
      } catch (error: any) {
-      setErrorMessage(`Incorrect Credentials_${error.message}`);
+       setErrorMessage(`Incorrect Credentials_${error.message}`);
+       setLoading(false);
       setError(true);
      }
 
@@ -104,7 +108,15 @@ const Auth:React.FC = () => {
                     <Image width={40} height={40} src="/images/google.png" alt="Google Logo"/>
                   </button>} */}
                   <button type="submit" className="w-full bg-red-700 text-white px-5 py-3 rounded-md text-sm font-bold mt-5 transition hover:bg-red-600">
-                    {isLogin? "Prihlašic": "Zaregistrovac"}
+                    {loading? 
+                     <div
+                        className="m-0 inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                        role="status">
+                        <span
+                          className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                          >Loading...</span>
+                      </div> 
+                    : isLogin? "Prihlašic": "Zaregistrovac"}
                   </button>
               </div>
             </form>
